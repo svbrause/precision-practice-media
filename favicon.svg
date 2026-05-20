@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Background -->
+  <rect width="32" height="32" rx="6" fill="#0B1118"/>
+  <!-- P mark - geometric, matches Plus Jakarta Sans weight -->
+  <rect x="9" y="8" width="3" height="16" rx="1" fill="#1A6FA0"/>
+  <rect x="9" y="8" width="10" height="3" rx="1" fill="#1A6FA0"/>
+  <rect x="9" y="15" width="10" height="3" rx="1" fill="#1A6FA0"/>
+  <rect x="16" y="8" width="3" height="10" rx="1" fill="#1A6FA0"/>
+  <!-- Accent underline -->
+  <rect x="9" y="26" width="14" height="1.5" rx="0.75" fill="#1A6FA0" opacity="0.5"/>
+</svg>

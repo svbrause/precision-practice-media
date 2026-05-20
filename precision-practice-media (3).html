@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Precision Practice Media — Patient Acquisition for Interventional Radiologists</title>
+<meta name="description" content="A direct-to-patient acquisition network built exclusively for interventional radiologists. We deliver booked consultations — not leads. One practice per market.">
+<meta property="og:title" content="Precision Practice Media">
+<meta property="og:description" content="We don't send you leads. We send you booked consultations. A fully managed patient acquisition network for IR practices.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Manrope:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FFFFFF;
+  --bg2:#F5F7FA;
+  --bg3:#EEF1F6;
+  --bg4:#E8ECF2;
+  --text:#0B1118;
+  --text-mid:#2D3748;
+  --text-muted:#5A6070;
+  --text-dim:#9CA3AF;
+  --accent:#1A6FA0;
+  --accent-h:#155E8A;
+  --accent-pale:#EBF4FA;
+  --accent-pale2:#DCF0FA;
+  --rule:#E8ECF0;
+  --rule-s:#D0D5DD;
+  --ff-d:'Plus Jakarta Sans',sans-serif;
+  --ff-b:'Manrope',sans-serif;
+  --ff-m:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--ff-b);font-size:15px;font-weight:400;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 56px;border-bottom:1px solid transparent;transition:background .3s,border-color .3s,box-shadow .3s;background:rgba(255,255,255,0)}
+nav.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-color:var(--rule);box-shadow:0 1px 0 var(--rule)}
+.nav-logo{font-family:var(--ff-d);font-size:16px;font-weight:700;color:var(--text);text-decoration:none;letter-spacing:-.02em}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:9px 22px;text-decoration:none;border-radius:3px;transition:background .2s}
+.nav-cta:hover{background:var(--accent-h)}
+
+/* ── HERO ── */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 56px 100px;position:relative;background:var(--bg2);overflow:hidden}
+#hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--rule)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--rule) 1px,transparent 1px),linear-gradient(90deg,var(--rule) 1px,transparent 1px);background-size:60px 60px;opacity:.4;pointer-events:none}
+.hero-eyebrow{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:32px;display:flex;align-items:center;gap:14px;position:relative}
+.hero-eyebrow::before{content:'';width:24px;height:2px;background:var(--accent)}
+h1.hero-headline{font-family:var(--ff-d);font-size:clamp(44px,6.5vw,82px);font-weight:700;line-height:1.04;letter-spacing:-.03em;max-width:860px;margin-bottom:28px;position:relative;color:var(--text)}
+h1.hero-headline em{font-style:normal;color:var(--accent)}
+.hero-sub{font-size:16px;font-weight:400;color:var(--text-muted);max-width:420px;margin-bottom:48px;line-height:1.75;position:relative}
+.hero-sub strong{color:var(--text);font-weight:500}
+.hero-btns{display:flex;gap:12px;position:relative}
+.btn-p{display:inline-block;font-family:var(--ff-d);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--text);padding:14px 32px;text-decoration:none;border-radius:3px;transition:background .2s,transform .15s}
+.btn-p:hover{background:var(--accent);transform:translateY(-1px)}
+.btn-g{display:inline-block;font-family:var(--ff-d);font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);border:1px solid var(--rule-s);padding:14px 32px;text-decoration:none;border-radius:3px;transition:border-color .2s,color .2s}
+.btn-g:hover{border-color:var(--text-muted);color:var(--text)}
+.hero-proof{position:absolute;right:56px;bottom:80px;display:flex;gap:48px}
+.hproof-item{text-align:right}
+.hproof-n{font-family:var(--ff-d);font-size:32px;font-weight:700;color:var(--text);letter-spacing:-.03em;line-height:1}
+.hproof-l{font-size:11px;color:var(--text-muted);margin-top:4px;letter-spacing:.02em}
+
+/* ── SHARED ── */
+.sec{padding:100px 56px;max-width:1200px;margin:0 auto}
+.sec-full{padding:100px 0}
+.sec-full .inner{max-width:1200px;margin:0 auto;padding:0 56px}
+hr.rl{border:none;border-top:1px solid var(--rule);max-width:1200px;margin:0 auto}
+.lbl{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.lbl::before{content:'';width:18px;height:2px;background:var(--accent)}
+.disp{font-family:var(--ff-d);font-size:clamp(30px,4vw,50px);font-weight:700;line-height:1.1;letter-spacing:-.03em;margin-bottom:16px;color:var(--text)}
+.disp em{font-style:normal;color:var(--accent)}
+.lead{font-size:15px;font-weight:400;color:var(--text-muted);line-height:1.8;max-width:480px}
+
+/* ── DISTINCTION ── */
+.dist-grid{display:grid;grid-template-columns:1fr 1fr;margin-top:48px;border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+.dc{padding:36px 32px}
+.dc.right{background:var(--accent-pale)}
+.dc+.dc{border-left:1px solid var(--rule)}
+.dc-lbl{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding-bottom:20px;border-bottom:1px solid var(--rule);margin-bottom:4px}
+.dc.left .dc-lbl{color:var(--text-dim)}
+.dc.right .dc-lbl{color:var(--accent)}
+.dr{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--rule);align-items:flex-start}
+.dr:last-child{border-bottom:none}
+.dd{width:5px;height:5px;border-radius:50%;margin-top:7px;flex-shrink:0}
+.dc.left .dd{background:var(--text-dim)}
+.dc.right .dd{background:var(--accent)}
+.dt{font-size:13.5px;font-weight:400;line-height:1.6;color:var(--text-muted)}
+.dc.right .dt{color:var(--text-mid)}
+.dist-note{margin-top:32px;font-size:15px;font-weight:400;font-style:italic;color:var(--text-muted);border-top:1px solid var(--rule);padding-top:24px}
+
+/* ── INCLUDED ── */
+.inc-wrap{background:var(--bg2)}
+.inc-layout{display:grid;grid-template-columns:320px 1fr;gap:80px;align-items:start}
+.inc-sticky{position:sticky;top:90px}
+.inc-item{display:grid;grid-template-columns:48px 1fr;gap:16px;padding:24px 0;border-top:1px solid var(--rule);opacity:0;transform:translateY(12px);transition:opacity .5s,transform .5s}
+.inc-item.vis{opacity:1;transform:none}
+.in-n{font-family:var(--ff-m);font-size:11px;color:var(--text-dim);padding-top:2px}
+.in-t{font-size:14px;font-weight:600;color:var(--text);margin-bottom:5px;font-family:var(--ff-d)}
+.in-d{font-size:13px;font-weight:400;color:var(--text-muted);line-height:1.7}
+
+/* ── HOW IT WORKS ── */
+.hiw-wrap{background:var(--bg)}
+.hiw-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.hiw-right{position:sticky;top:90px}
+.hiw-stages{margin-top:8px}
+.hiw-stage{padding:28px 0;border-top:1px solid var(--rule);display:grid;grid-template-columns:40px 1fr;gap:20px;align-items:start}
+.hiw-num{width:32px;height:32px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:var(--ff-d);font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+.hiw-title{font-family:var(--ff-d);font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px;letter-spacing:-.01em}
+.hiw-body{font-size:13.5px;font-weight:400;color:var(--text-muted);line-height:1.75}
+.hiw-body strong{color:var(--text);font-weight:500}
+.hiw-close{margin-top:28px;padding:20px 24px;background:var(--bg2);border-radius:6px;border:1px solid var(--rule)}
+.hiw-close p{font-size:13px;font-weight:400;color:var(--text-muted);line-height:1.7}
+.hiw-close strong{color:var(--text);font-weight:500}
+.hiw-visual{background:var(--bg2);border:1px solid var(--rule);border-radius:8px;padding:40px 32px}
+.hiw-vis-title{font-family:var(--ff-d);font-size:13px;font-weight:600;color:var(--text-muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:28px}
+.hiw-flow{display:flex;flex-direction:column;gap:0}
+.hiw-flow-item{display:flex;align-items:flex-start;gap:16px;position:relative}
+.hiw-flow-item+.hiw-flow-item::before{content:'';position:absolute;left:15px;top:-20px;width:1px;height:20px;background:var(--rule-s)}
+.hiw-flow-icon{width:32px;height:32px;border-radius:50%;background:var(--accent-pale);border:1px solid var(--accent-pale2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hiw-flow-icon svg{width:14px;height:14px}
+.hiw-flow-text{padding-bottom:24px}
+.hiw-flow-label{font-family:var(--ff-d);font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px}
+.hiw-flow-desc{font-size:12px;color:var(--text-muted);line-height:1.6}
+.hiw-flow-connector{width:1px;height:24px;background:var(--rule-s);margin-left:15px}
+
+/* ── CLIENTS ── */
+.cli-wrap{background:var(--bg2)}
+.cli-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.cli-tag{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.cli-name{font-family:var(--ff-d);font-size:clamp(28px,3.5vw,44px);font-weight:700;color:var(--text);letter-spacing:-.03em;margin-bottom:12px;line-height:1.1}
+.cli-market{font-size:12px;color:var(--text-dim);margin-bottom:20px;font-family:var(--ff-m)}
+.cli-desc{font-size:15px;color:var(--text-muted);line-height:1.8;margin-bottom:24px}
+.cli-procedures{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:32px}
+.cli-proc{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;background:var(--accent-pale);color:var(--accent);padding:5px 12px;border-radius:3px}
+.cli-card-visual{background:var(--bg);border:1px solid var(--rule);border-radius:8px;padding:36px;display:flex;flex-direction:column;gap:20px}
+.cli-visual-header{display:flex;align-items:center;justify-content:space-between}
+.cli-visual-dot{display:flex;gap:5px}
+.cli-visual-dot span{width:8px;height:8px;border-radius:50%;background:var(--rule-s)}
+.cli-visual-url{font-family:var(--ff-m);font-size:11px;color:var(--text-dim)}
+.cli-visual-hero{background:var(--bg2);border-radius:4px;padding:24px;border:1px solid var(--rule)}
+.cli-visual-eyebrow{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.cli-visual-hed{font-family:var(--ff-d);font-size:18px;font-weight:700;color:var(--text);line-height:1.2;letter-spacing:-.02em;margin-bottom:8px}
+.cli-visual-sub{font-size:11px;color:var(--text-muted);line-height:1.6;margin-bottom:14px}
+.cli-visual-btn{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:#fff;padding:7px 16px;border-radius:3px}
+.cli-visual-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:4px;overflow:hidden}
+.cli-vis-stat{background:var(--bg);padding:12px 14px}
+.cli-vis-n{font-family:var(--ff-d);font-size:20px;font-weight:700;color:var(--accent);line-height:1;margin-bottom:3px}
+.cli-vis-l{font-size:10px;color:var(--text-dim);line-height:1.4}
+
+/* ── REFERRING ── */
+.ref-band{border-top:1px solid var(--rule);padding:40px 56px;display:grid;grid-template-columns:160px 1fr;gap:48px;max-width:1200px;margin:0 auto;align-items:start}
+.ref-lbl{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);line-height:1.8;padding-top:2px}
+.ref-txt{font-size:15px;font-weight:400;color:var(--text-muted);line-height:1.85}
+.ref-txt strong{color:var(--text);font-weight:500}
+
+/* ── FOUNDED ── */
+.fnd-wrap{background:var(--text)}
+.fnd-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.fnd-left{position:sticky;top:90px}
+.fnd-ey{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.fnd-ey::before{content:'';width:18px;height:2px;background:var(--accent)}
+.fnd-q{font-family:var(--ff-d);font-size:clamp(22px,2.8vw,34px);font-weight:700;line-height:1.2;letter-spacing:-.025em;color:#EAE4D8;margin-bottom:0}
+.fnd-right p{font-size:15px;font-weight:400;color:rgba(234,228,216,.6);line-height:1.9;margin-bottom:22px}
+.fnd-right strong{color:#EAE4D8;font-weight:500}
+.cbox{margin-top:32px;border:1px solid rgba(255,255,255,.1);padding:24px;border-radius:6px}
+.ched{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:12px}
+.cbody{font-size:13px;font-weight:400;color:rgba(234,228,216,.45);line-height:1.8}
+
+/* ── APPLICATION ── */
+.apl-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.apl-sticky{position:sticky;top:90px}
+.apl-note{margin-top:24px;padding-top:24px;border-top:1px solid var(--rule);font-size:14px;font-weight:400;color:var(--text-muted);line-height:1.85}
+.apl-note em{font-family:var(--ff-d);font-style:normal;font-size:17px;font-weight:700;color:var(--text);display:block;margin-bottom:8px;letter-spacing:-.02em}
+form{display:flex;flex-direction:column}
+.fg{padding:18px 0;border-top:1px solid var(--rule)}
+.fg:last-of-type{border-bottom:1px solid var(--rule)}
+label{display:block;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}
+input,textarea{width:100%;background:transparent;border:none;border-bottom:1px solid var(--rule);padding:8px 0;font-family:var(--ff-b);font-size:14px;font-weight:400;color:var(--text);outline:none;transition:border-color .2s}
+input:focus,textarea:focus{border-color:var(--accent)}
+input::placeholder,textarea::placeholder{color:var(--text-dim)}
+textarea{resize:none;height:70px}
+
+/* MULTI-SELECT */
+.ms-wrap{position:relative}
+.ms-trigger{width:100%;background:transparent;border:none;border-bottom:1px solid var(--rule);padding:8px 24px 8px 0;font-family:var(--ff-b);font-size:14px;font-weight:400;color:var(--text);text-align:left;cursor:pointer;outline:none;transition:border-color .2s;display:flex;align-items:center;justify-content:space-between}
+.ms-trigger:focus{border-color:var(--accent)}
+.ms-trigger-text{color:var(--text-dim)}
+.ms-trigger-text.has-selection{color:var(--text)}
+.ms-arrow{width:10px;height:6px;flex-shrink:0;transition:transform .2s}
+.ms-arrow.open{transform:rotate(180deg)}
+.ms-dropdown{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--bg);border:1px solid var(--rule-s);border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,.08);z-index:50;overflow:hidden;display:none}
+.ms-dropdown.open{display:block}
+.ms-option{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;transition:background .15s;font-size:13px;color:var(--text-mid)}
+.ms-option:hover{background:var(--bg2)}
+.ms-option.selected{background:var(--accent-pale)}
+.ms-check{width:16px;height:16px;border:1.5px solid var(--rule-s);border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:background .15s,border-color .15s}
+.ms-option.selected .ms-check{background:var(--accent);border-color:var(--accent)}
+.ms-check svg{width:10px;height:10px;display:none}
+.ms-option.selected .ms-check svg{display:block}
+
+.ffoot{margin-top:32px;display:flex;flex-direction:column;gap:12px}
+.sbtn{background:var(--accent);color:#fff;border:none;padding:14px 36px;font-family:var(--ff-d);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:3px;transition:background .2s,transform .15s;align-self:flex-start}
+.sbtn:hover{background:var(--accent-h);transform:translateY(-1px)}
+.flegal{font-size:11px;color:var(--text-dim);line-height:1.7}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--rule);padding:36px 56px;display:flex;align-items:center;justify-content:space-between;background:var(--bg2)}
+.flogo{font-family:var(--ff-d);font-size:15px;font-weight:700;color:var(--text-muted);letter-spacing:-.01em}
+.flogo span{color:var(--accent)}
+.fcopy{font-size:11px;color:var(--text-dim)}
+
+/* ── ANIMATIONS ── */
+.fade{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.fade.vis{opacity:1;transform:none}
+.fade.d1{transition-delay:.1s}
+.fade.d2{transition-delay:.2s}
+.fade.d3{transition-delay:.3s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  nav{padding:0 24px}
+  .nav-links{display:none}
+  #hero{padding:110px 24px 80px}
+  .hero-proof{display:none}
+  .sec,.sec-full .inner{padding-left:24px;padding-right:24px}
+  .sec{padding-top:72px;padding-bottom:72px}
+  .dist-grid{grid-template-columns:1fr}
+  .dc+.dc{border-left:none;border-top:1px solid var(--rule)}
+  .inc-layout,.hiw-layout,.fnd-layout,.apl-layout{grid-template-columns:1fr}
+  .inc-sticky,.hiw-right,.fnd-left,.apl-sticky{position:static}
+  .cli-header{grid-template-columns:1fr}
+  .ref-band{grid-template-columns:1fr;gap:16px;padding:32px 24px}
+  footer{flex-direction:column;gap:12px;text-align:center;padding:28px 24px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="#" class="nav-logo">Precision Practice <span>Media</span></a>
+  <ul class="nav-links">
+    <li><a href="#distinction">Network</a></li>
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#clients">Clients</a></li>
+  </ul>
+  <a href="#apply" class="nav-cta">Apply to Join</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-eyebrow fade">Direct-to-Patient Acquisition Network</div>
+  <h1 class="hero-headline fade d1">
+    We don't send you leads.<br>
+    We send you <em>booked consultations.</em>
+  </h1>
+  <p class="hero-sub fade d2">
+    A direct-to-patient acquisition network built exclusively for interventional radiologists.
+    <strong>One practice per market.</strong> Fully managed, end-to-end.
+  </p>
+  <div class="hero-btns fade d3">
+    <a href="#apply" class="btn-p">Apply to Join</a>
+    <a href="#distinction" class="btn-g">See the Difference</a>
+  </div>
+  <div class="hero-proof fade d3">
+    <div class="hproof-item">
+      <div class="hproof-n">100%</div>
+      <div class="hproof-l">Consultations pre-booked</div>
+    </div>
+    <div class="hproof-item">
+      <div class="hproof-n">1</div>
+      <div class="hproof-l">Provider per market</div>
+    </div>
+    <div class="hproof-item">
+      <div class="hproof-n">48hr</div>
+      <div class="hproof-l">Avg. time to first case</div>
+    </div>
+  </div>
+</section>
+
+<hr class="rl">
+
+<!-- DISTINCTION -->
+<section class="sec" id="distinction">
+  <div class="lbl fade">The Distinction</div>
+  <h2 class="disp fade d1">What you've tried.<br>What we <em>deliver.</em></h2>
+  <p class="lead fade d2">Most patient acquisition vendors optimize for volume. We optimize for the qualified patient sitting across from you in the consultation room.</p>
+  <div class="dist-grid fade d2">
+    <div class="dc left">
+      <div class="dc-lbl">Traditional Lead Generation</div>
+      <div class="dr"><div class="dd"></div><div class="dt">Unverified contact information from a web form submission</div></div>
+      <div class="dr"><div class="dd"></div><div class="dt">Self-reported interest with no clinical screening whatsoever</div></div>
+      <div class="dr"><div class="dd"></div><div class="dt">Your staff handles all follow-up, scheduling, and no-shows</div></div>
+      <div class="dr"><div class="dd"></div><div class="dt">Insurance status unknown until the patient is in your office</div></div>
+      <div class="dr"><div class="dd"></div><div class="dt">A name and a phone number. Nothing more.</div></div>
+    </div>
+    <div class="dc right">
+      <div class="dc-lbl">Precision Practice Media</div>
+      <div class="dr"><div class="dd"></div><div class="dt">Confirmed clinical candidate with documented treatment history</div></div>
+      <div class="dr"><div class="dd"></div><div class="dt">Screened against qualification criteria before any contact</div></div>
+      <div class="dr"><div class="dd"></div><div class="dt">Follow-up, nurture, and scheduling handled entirely by our team</div></div>
+      <div class="dr"><div class="dd"></div><div class="dt">Insurance eligibility verified before the consultation is booked</div></div>
+      <div class="dr"><div class="dd"></div><div class="dt">A consultation on your calendar. Ready to proceed.</div></div>
+    </div>
+  </div>
+  <div class="dist-note fade">We built this because we knew what the other side of the table looked like.</div>
+</section>
+
+<hr class="rl">
+
+<!-- INCLUDED -->
+<section class="sec-full inc-wrap" id="included">
+  <div class="inner">
+    <div class="inc-layout">
+      <div class="inc-sticky">
+        <div class="lbl fade">What's Included</div>
+        <h2 class="disp fade d1">Everything required.<br><em>Nothing extra.</em></h2>
+        <p class="lead fade d2">A single network partnership covers every layer of patient acquisition. You treat patients. We handle the infrastructure that finds them.</p>
+      </div>
+      <div>
+        <div class="inc-item"><div class="in-n">01</div><div><div class="in-t">Direct-to-Patient Acquisition</div><div class="in-d">Condition-specific media in your market, reaching patients before they reach a surgeon. Built on dedicated patient-facing brands with clinical credibility — not generic ad campaigns that erode trust before the first appointment.</div></div></div>
+        <div class="inc-item"><div class="in-n">02</div><div><div class="in-t">Clinical Qualification</div><div class="in-d">Every inbound patient screened against documented clinical criteria before any contact with your practice. We reject patients who don't meet the threshold. Volume without qualification is not a service we offer.</div></div></div>
+        <div class="inc-item"><div class="in-n">03</div><div><div class="in-t">Scheduling &amp; Follow-Up</div><div class="in-d">Intake, outreach, nurture sequences, and calendar booking managed end-to-end. Appointment reminders and no-show recovery included. Your front desk is not involved until the patient walks in.</div></div></div>
+        <div class="inc-item"><div class="in-n">04</div><div><div class="in-t">Insurance Verification</div><div class="in-d">Coverage confirmed before the consultation is booked. You see the patient. Not the paperwork.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rl">
+
+<!-- HOW IT WORKS -->
+<section class="sec-full hiw-wrap" id="how-it-works">
+  <div class="inner">
+    <div class="hiw-layout">
+      <div>
+        <div class="lbl fade">How It Works</div>
+        <h2 class="disp fade d1">We meet patients where<br>they are — and walk them<br><em>all the way to your door.</em></h2>
+
+        <div class="hiw-stages fade d2">
+          <div class="hiw-stage">
+            <div class="hiw-num">1</div>
+            <div>
+              <div class="hiw-title">Meet them where they are</div>
+              <div class="hiw-body">Patients dealing with chronic joint pain, BPH, or fibroids are searching for answers on their devices — late at night, after another failed injection, or following a surgery consult they didn't like. We build <strong>condition-specific, medically credible patient brands</strong> that appear when and where those searches happen, positioning minimally invasive treatment as the alternative they didn't know existed.</div>
+            </div>
+          </div>
+          <div class="hiw-stage">
+            <div class="hiw-num">2</div>
+            <div>
+              <div class="hiw-title">Educate and qualify</div>
+              <div class="hiw-body">Our patient-facing brands don't just capture interest — they educate. Patients learn about their condition, understand what minimally invasive procedures can offer, and complete a <strong>structured intake assessment</strong>. Our clinical coordination team reviews every submission and screens against documented candidacy criteria. Patients who don't qualify are not forwarded — no exceptions.</div>
+            </div>
+          </div>
+          <div class="hiw-stage">
+            <div class="hiw-num">3</div>
+            <div>
+              <div class="hiw-title">Verify and book</div>
+              <div class="hiw-body">Qualified candidates have their <strong>insurance eligibility confirmed</strong> before a single appointment is made. Our team handles all outreach, follow-up, and scheduling directly into your calendar. By the time a patient appears on your books, the clinical and financial groundwork is already done.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hiw-close fade d3">
+          <p>You focus on the procedure. <strong>We handle everything that comes before it.</strong></p>
+        </div>
+      </div>
+
+      <div class="hiw-right fade d1">
+        <div class="hiw-visual">
+          <div class="hiw-vis-title">The patient journey</div>
+          <div class="hiw-flow">
+            <div class="hiw-flow-item">
+              <div class="hiw-flow-icon">
+                <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="5" r="2.5" stroke="#1A6FA0" stroke-width="1.2"/><path d="M2.5 12c0-2.485 2.015-4.5 4.5-4.5s4.5 2.015 4.5 4.5" stroke="#1A6FA0" stroke-width="1.2" stroke-linecap="round"/></svg>
+              </div>
+              <div class="hiw-flow-text">
+                <div class="hiw-flow-label">Patient searches for relief</div>
+                <div class="hiw-flow-desc">Chronic pain, failed injections, hesitant about surgery. Searching on mobile, tablet, or desktop.</div>
+              </div>
+            </div>
+            <div class="hiw-flow-connector"></div>
+            <div class="hiw-flow-item">
+              <div class="hiw-flow-icon">
+                <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="10" height="10" rx="1.5" stroke="#1A6FA0" stroke-width="1.2"/><path d="M4.5 7h5M4.5 5h5M4.5 9h3" stroke="#1A6FA0" stroke-width="1.2" stroke-linecap="round"/></svg>
+              </div>
+              <div class="hiw-flow-text">
+                <div class="hiw-flow-label">Finds our patient-facing brand</div>
+                <div class="hiw-flow-desc">Condition-specific, credible, educational. Designed to build trust and explain the alternative.</div>
+              </div>
+            </div>
+            <div class="hiw-flow-connector"></div>
+            <div class="hiw-flow-item">
+              <div class="hiw-flow-icon">
+                <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 7l3.5 3.5L12 3.5" stroke="#1A6FA0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="hiw-flow-text">
+                <div class="hiw-flow-label">Completes intake assessment</div>
+                <div class="hiw-flow-desc">Structured questions that surface symptoms, treatment history, and candidacy signals.</div>
+              </div>
+            </div>
+            <div class="hiw-flow-connector"></div>
+            <div class="hiw-flow-item">
+              <div class="hiw-flow-icon">
+                <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="4.5" stroke="#1A6FA0" stroke-width="1.2"/><path d="M5 7l1.5 1.5L9.5 5" stroke="#1A6FA0" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div class="hiw-flow-text">
+                <div class="hiw-flow-label">Clinically qualified &amp; verified</div>
+                <div class="hiw-flow-desc">Our team reviews the submission. Insurance eligibility confirmed. Non-candidates are not forwarded.</div>
+              </div>
+            </div>
+            <div class="hiw-flow-connector"></div>
+            <div class="hiw-flow-item">
+              <div class="hiw-flow-icon">
+                <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="3" width="10" height="9" rx="1.5" stroke="#1A6FA0" stroke-width="1.2"/><path d="M5 2v2M9 2v2M2 6h10" stroke="#1A6FA0" stroke-width="1.2" stroke-linecap="round"/></svg>
+              </div>
+              <div class="hiw-flow-text">
+                <div class="hiw-flow-label">Booked on your calendar</div>
+                <div class="hiw-flow-desc">Consultation scheduled, reminders sent. You receive a prepared, informed patient.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="rl">
+
+<!-- CLIENTS -->
+<section class="sec-full cli-wrap" id="clients">
+  <div class="inner">
+    <div class="cli-layout">
+      <div class="fade">
+        <div class="lbl">Clients</div>
+        <h2 class="cli-name">Valley Joint Pain Center</h2>
+        <div class="cli-market">valleyjointpain.com</div>
+        <p class="cli-desc">A condition-specific patient acquisition brand serving the greater San Fernando Valley market. Educates patients on minimally invasive alternatives to knee replacement and guides them through a structured assessment before any clinical contact is made.</p>
+        <div class="cli-procedures">
+          <span class="cli-proc">GAE</span>
+          <span class="cli-proc">RFA</span>
+          <span class="cli-proc">Hip &amp; Shoulder Embolization</span>
+          <span class="cli-proc">PAE</span>
+        </div>
+        <p class="lead" style="font-size:14px;">Each network market receives a dedicated patient-facing brand — built, managed, and optimized entirely by our team. One practice. One brand. Exclusive to your market.</p>
+      </div>
+      <div class="fade d1">
+        <div class="cli-card-visual">
+          <div class="cli-visual-header">
+            <div class="cli-visual-dot"><span></span><span></span><span></span></div>
+            <div class="cli-visual-url">valleyjointpain.com</div>
+          </div>
+          <div class="cli-visual-hero">
+            <div class="cli-visual-eyebrow">Minimally Invasive Knee Relief</div>
+            <div class="cli-visual-hed">Find out if you're a candidate for non-surgical knee treatment.</div>
+            <div class="cli-visual-sub">A 2-minute assessment to see if Genicular Artery Embolization or other minimally invasive options are right for you.</div>
+            <div class="cli-visual-btn">Take the Assessment</div>
+          </div>
+          <div class="cli-visual-stats">
+            <div class="cli-vis-stat"><div class="cli-vis-n">85%</div><div class="cli-vis-l">Report meaningful relief at 1 year</div></div>
+            <div class="cli-vis-stat"><div class="cli-vis-n">2 min</div><div class="cli-vis-l">Assessment to qualified intake</div></div>
+            <div class="cli-vis-stat"><div class="cli-vis-n">GAE</div><div class="cli-vis-l">Primary procedure focus</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERRING -->
+<div class="ref-band fade">
+  <div class="ref-lbl">Referring Provider Program</div>
+  <div class="ref-txt">Network partners gain access to our <strong>structured referring provider program</strong> — a targeted outreach initiative that activates primary care physicians in your market as a supplemental referral channel. PCPs who have historically referred joint pain patients to orthopedic surgery are introduced to minimally invasive alternatives, shifting qualified referrals directly to your practice. Patient-facing educational materials, referral infrastructure, and closed-loop communication included.</div>
+</div>
+
+<hr class="rl">
+
+<!-- FOUNDED -->
+<section class="sec-full fnd-wrap" id="founded">
+  <div class="inner">
+    <div class="fnd-layout">
+      <div class="fnd-left">
+        <div class="fnd-ey fade">Our Foundation</div>
+        <div class="fnd-q fade d1">"The clinical side was never the hard part. The infrastructure to find, qualify, and convert patients — reliably, at volume — was what didn't exist."</div>
+      </div>
+      <div class="fnd-right">
+        <p class="fade">Precision Practice Media was founded by interventional radiologists who had built independent practices and recognized a gap that no marketing company was equipped to fill. <strong>We built the solution ourselves.</strong></p>
+        <p class="fade d1">That background informs everything: the qualification criteria, the patient-facing brands built to clinical standards, and the coordination team that understands what it means to have a physician's professional reputation attached to every patient interaction.</p>
+        <p class="fade d2">We also understand what it means to operate as an independent practice — and what it takes to build one that grows on your terms, not a hospital system's schedule.</p>
+        <div class="cbox fade d3">
+          <div class="ched">Patient Data &amp; HIPAA Compliance</div>
+          <div class="cbody">Our intake and qualification process is built to HIPAA standards. Patient data is never shared, sold, or used outside of your network relationship. All coordination staff operate under BAA-governed agreements. We apply the same standard to patient data that you hold yourself to in the clinic.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rl">
+
+<!-- APPLICATION -->
+<section class="sec" id="apply">
+  <div class="apl-layout">
+    <div class="apl-sticky">
+      <div class="lbl fade">Apply to Join</div>
+      <h2 class="disp fade d1">We're selective because our network members <em>are.</em></h2>
+      <div class="apl-note fade d2">
+        <em>What happens next.</em>
+        Our team reviews every application and responds within 48 hours. If your market is available and your practice is a fit, we'll schedule a brief call to walk through the network model, patient volume in your area, and how the partnership works. No obligation, no sales pressure.
+      </div>
+    </div>
+    <div>
+      <form id="app-form">
+        <div class="fg"><label>Practice Name</label><input type="text" placeholder="Your practice or clinic name" required></div>
+        <div class="fg"><label>Your Name</label><input type="text" placeholder="First and last name" required></div>
+        <div class="fg"><label>Email Address</label><input type="email" placeholder="Professional email" required></div>
+        <div class="fg"><label>Phone</label><input type="tel" placeholder="Best number to reach you"></div>
+        <div class="fg"><label>Practice Location</label><input type="text" placeholder="City, State" required></div>
+        <div class="fg">
+          <label>Primary Procedures Performed</label>
+          <div class="ms-wrap" id="ms-wrap">
+            <button type="button" class="ms-trigger" id="ms-trigger" aria-haspopup="listbox" aria-expanded="false">
+              <span class="ms-trigger-text" id="ms-display">Select all that apply</span>
+              <svg class="ms-arrow" id="ms-arrow" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l4 4 4-4" stroke="#9CA3AF" stroke-width="1.2" fill="none"/></svg>
+            </button>
+            <div class="ms-dropdown" id="ms-dropdown" role="listbox" aria-multiselectable="true">
+              <div class="ms-option" data-value="GAE / MSK Embolization" role="option" aria-selected="false"><div class="ms-check"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>GAE / MSK Embolization</div>
+              <div class="ms-option" data-value="Prostate Artery Embolization (PAE)" role="option" aria-selected="false"><div class="ms-check"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Prostate Artery Embolization (PAE)</div>
+              <div class="ms-option" data-value="Uterine Fibroid Embolization (UFE)" role="option" aria-selected="false"><div class="ms-check"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Uterine Fibroid Embolization (UFE)</div>
+              <div class="ms-option" data-value="Peripheral Arterial Disease" role="option" aria-selected="false"><div class="ms-check"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Peripheral Arterial Disease</div>
+              <div class="ms-option" data-value="Radiofrequency Ablation (RFA)" role="option" aria-selected="false"><div class="ms-check"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Radiofrequency Ablation (RFA)</div>
+              <div class="ms-option" data-value="Other / Multi-procedure" role="option" aria-selected="false"><div class="ms-check"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Other / Multi-procedure</div>
+            </div>
+          </div>
+        </div>
+        <div class="fg"><label>How did you hear about us?</label><input type="text" placeholder="Referral, search, colleague, etc."></div>
+        <div class="ffoot">
+          <button type="submit" class="sbtn">Submit Application</button>
+          <div class="flegal">Applications reviewed within 48 hours. Market availability confirmed at time of review. All information kept strictly confidential.</div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="flogo">Precision Practice <span>Media</span></div>
+  <div class="fcopy">© 2026 Precision Practice Media. All rights reserved.</div>
+</footer>
+
+<script>
+  /* Nav scroll */
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  /* Fade-in */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade, .inc-item').forEach(el => obs.observe(el));
+
+  /* Multi-select */
+  const trigger = document.getElementById('ms-trigger');
+  const dropdown = document.getElementById('ms-dropdown');
+  const arrow = document.getElementById('ms-arrow');
+  const display = document.getElementById('ms-display');
+  const options = dropdown.querySelectorAll('.ms-option');
+  let selected = [];
+
+  trigger.addEventListener('click', () => {
+    const open = dropdown.classList.toggle('open');
+    arrow.classList.toggle('open', open);
+    trigger.setAttribute('aria-expanded', open);
+  });
+
+  options.forEach(opt => {
+    opt.addEventListener('click', () => {
+      const val = opt.dataset.value;
+      const idx = selected.indexOf(val);
+      if (idx === -1) {
+        selected.push(val);
+        opt.classList.add('selected');
+        opt.setAttribute('aria-selected', 'true');
+      } else {
+        selected.splice(idx, 1);
+        opt.classList.remove('selected');
+        opt.setAttribute('aria-selected', 'false');
+      }
+      if (selected.length === 0) {
+        display.textContent = 'Select all that apply';
+        display.classList.remove('has-selection');
+      } else if (selected.length === 1) {
+        display.textContent = selected[0];
+        display.classList.add('has-selection');
+      } else {
+        display.textContent = selected.length + ' procedures selected';
+        display.classList.add('has-selection');
+      }
+    });
+  });
+
+  document.addEventListener('click', e => {
+    if (!document.getElementById('ms-wrap').contains(e.target)) {
+      dropdown.classList.remove('open');
+      arrow.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  /* Form submit */
+  document.getElementById('app-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('.sbtn');
+    btn.textContent = 'Application Received';
+    btn.style.background = '#2A6B45';
+    btn.disabled = true;
+    this.querySelector('.flegal').textContent = 'Thank you. Our team will review your application and be in touch within 48 hours.';
+  });
+</script>
+</body>
+</html>
