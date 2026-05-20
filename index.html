@@ -209,6 +209,9 @@ textarea{resize:none;height:70px}
 .ffoot{margin-top:32px;display:flex;flex-direction:column;gap:12px}
 .sbtn{background:var(--accent);color:#fff;border:none;padding:14px 36px;font-family:var(--ff-d);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border-radius:3px;transition:background .2s,transform .15s;align-self:flex-start}
 .sbtn:hover{background:var(--accent-h);transform:translateY(-1px)}
+.sbtn:disabled{opacity:.85;cursor:not-allowed;transform:none}
+.sbtn.err{background:#9B2C2C}
+.form-err{font-size:12px;color:#9B2C2C;margin-top:12px;line-height:1.5}
 .flegal{font-size:11px;color:var(--text-dim);line-height:1.7}
 
 /* ── FOOTER ── */
@@ -521,12 +524,12 @@ footer{border-top:1px solid var(--rule);padding:36px 56px;display:flex;align-ite
       </div>
     </div>
     <div>
-      <form id="app-form">
-        <div class="fg"><label>Practice Name</label><input type="text" placeholder="Your practice or clinic name" required></div>
-        <div class="fg"><label>Your Name</label><input type="text" placeholder="First and last name" required></div>
-        <div class="fg"><label>Email Address</label><input type="email" placeholder="Professional email" required></div>
-        <div class="fg"><label>Phone</label><input type="tel" placeholder="Best number to reach you"></div>
-        <div class="fg"><label>Practice Location</label><input type="text" placeholder="City, State" required></div>
+      <form id="app-form" novalidate>
+        <div class="fg"><label for="practiceName">Practice Name</label><input id="practiceName" name="practiceName" type="text" placeholder="Your practice or clinic name" required></div>
+        <div class="fg"><label for="contactName">Your Name</label><input id="contactName" name="contactName" type="text" placeholder="First and last name" required></div>
+        <div class="fg"><label for="email">Email Address</label><input id="email" name="email" type="email" placeholder="Professional email" required></div>
+        <div class="fg"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" placeholder="Best number to reach you"></div>
+        <div class="fg"><label for="location">Practice Location</label><input id="location" name="location" type="text" placeholder="City, State" required></div>
         <div class="fg">
           <label>Primary Procedures Performed</label>
           <div class="ms-wrap" id="ms-wrap">
@@ -544,10 +547,11 @@ footer{border-top:1px solid var(--rule);padding:36px 56px;display:flex;align-ite
             </div>
           </div>
         </div>
-        <div class="fg"><label>How did you hear about us?</label><input type="text" placeholder="Referral, search, colleague, etc."></div>
+        <div class="fg"><label for="referral">How did you hear about us?</label><input id="referral" name="referral" type="text" placeholder="Referral, search, colleague, etc."></div>
         <div class="ffoot">
-          <button type="submit" class="sbtn">Submit Application</button>
-          <div class="flegal">Applications reviewed within 48 hours. Market availability confirmed at time of review. All information kept strictly confidential.</div>
+          <button type="submit" class="sbtn" id="submit-btn">Submit Application</button>
+          <p class="form-err" id="form-err" hidden></p>
+          <div class="flegal" id="form-legal">Applications reviewed within 48 hours. Market availability confirmed at time of review. All information kept strictly confidential.</div>
         </div>
       </form>
     </div>
@@ -622,13 +626,54 @@ footer{border-top:1px solid var(--rule);padding:36px 56px;display:flex;align-ite
   });
 
   /* Form submit */
-  document.getElementById('app-form').addEventListener('submit', function(e) {
+  document.getElementById('app-form').addEventListener('submit', async function(e) {
     e.preventDefault();
-    const btn = this.querySelector('.sbtn');
-    btn.textContent = 'Application Received';
-    btn.style.background = '#2A6B45';
+    const form = this;
+    const btn = document.getElementById('submit-btn');
+    const errEl = document.getElementById('form-err');
+    const legal = document.getElementById('form-legal');
+    const originalLabel = btn.textContent;
+
+    errEl.hidden = true;
+    errEl.textContent = '';
+    btn.classList.remove('err');
     btn.disabled = true;
-    this.querySelector('.flegal').textContent = 'Thank you. Our team will review your application and be in touch within 48 hours.';
+    btn.textContent = 'Submitting…';
+
+    const fd = new FormData(form);
+    const payload = {
+      practiceName: fd.get('practiceName'),
+      contactName: fd.get('contactName'),
+      email: fd.get('email'),
+      phone: fd.get('phone'),
+      location: fd.get('location'),
+      referral: fd.get('referral'),
+      procedures: selected.slice(),
+    };
+
+    try {
+      const res = await fetch('/api/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(data.error || 'Submission failed. Please try again.');
+      }
+      btn.textContent = 'Application Received';
+      btn.style.background = '#2A6B45';
+      legal.textContent = 'Thank you. Our team will review your application and be in touch within 48 hours.';
+      form.querySelectorAll('input').forEach((el) => { el.disabled = true; });
+      trigger.disabled = true;
+      dropdown.classList.remove('open');
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = originalLabel;
+      btn.classList.add('err');
+      errEl.textContent = err.message || 'Something went wrong. Please try again.';
+      errEl.hidden = false;
+    }
   });
 </script>
 </body>
